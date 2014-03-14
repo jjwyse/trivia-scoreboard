@@ -1,10 +1,11 @@
 doctype html
 html
   head
-    title= title
+    title #{title}
     link(rel='stylesheet', href='/stylesheets/trivia-scoreboard.css')
   body
     div(class = "header")
       block header
+        h1 #{title}
     div(class = "content")
       block content

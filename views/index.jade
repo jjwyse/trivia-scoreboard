@@ -1,11 +1,7 @@
 extends layout
 
-block header
-  h1= title
-
 block content
   ul
     each player, u in players
       li
-        h2= player.nickname
-        h3= player.score
+        h2 #{player.nickname} - #{player.score}

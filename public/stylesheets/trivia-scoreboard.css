@@ -1,8 +1,19 @@
-body {
-    padding: 10px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+    font-weight: lighter;
 }
 
-a {
-    color: #00B7FF;
+body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    margin: 0;
+}
+
+.header {
+    background-color: #ededed;
+    border-bottom: 1px solid #cecece;
+    border-top: 1px solid #ededed;
+    text-align: right;
+}
+
+.content ul {
+    list-style-type: none;
 }
