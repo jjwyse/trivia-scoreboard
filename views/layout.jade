@@ -1,11 +1,18 @@
 doctype html
 html
   head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+
     title #{title}
+
+    link(rel='shortcut icon', href='/images/favicon.ico')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/trivia-scoreboard.css')
   body
-    div(class = "header")
-      block header
-        h1 #{title}
-    div(class = "content")
+    div(class = 'content')
       block content
+
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
+    script(src='/javascripts/bootstrap.min.js')
