@@ -7,7 +7,7 @@ var path = require('path');
 
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/trivia-scoreboard');
+var db = monk('192.168.0.100:27017/trivia-scoreboard');
 
 
 /**

@@ -1,8 +1,10 @@
 extends layout
 
 block content
-  ul
-    each player, u in players
-      li
-        img(src='/images/#{player.nickname}.png')
-        h2 #{player.score}
+  div.jumbotron
+      div.container-fluid
+          div.row
+            each player, u in players
+              div.col-md-1
+                img.img-responsive(src='/images/#{player.nickname}.png')
+                h2 #{player.score}
