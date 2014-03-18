@@ -7,7 +7,8 @@ var http = require('http');
 var path = require('path');
 
 var monk = require('monk');
-var db = monk('joshuawyse.com:27017/trivia-scoreboard');
+var config = require('./config');
+var db = monk(config.mongodb);
 
 
 /**
