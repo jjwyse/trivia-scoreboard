@@ -34,9 +34,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index(db));
-app.put('/players/:nickname', players.incrementByOne(db));
-app.put('/players/:nickname/set/:newScore', players.set(db));
-app.put('/players/:nickname/-', players.decrementByOne(db));
+app.put('/players/:nickname/score', players.update(db));
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
