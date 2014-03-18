@@ -1,13 +1,13 @@
 var express = require('express');
 
 var routes = require('./routes');
+var players = require('./routes/players');
 
 var http = require('http');
 var path = require('path');
 
-var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('192.168.0.100:27017/trivia-scoreboard');
+var db = monk('joshuawyse.com:27017/trivia-scoreboard');
 
 
 /**
@@ -34,6 +34,9 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index(db));
+app.put('/players/:nickname', players.incrementByOne(db));
+app.put('/players/:nickname/set/:newScore', players.set(db));
+app.put('/players/:nickname/-', players.decrementByOne(db));
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
