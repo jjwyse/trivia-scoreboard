@@ -8,7 +8,9 @@ function decrementScore(playerName) {
         url: '/players/' + playerName + '/score?value=minus',
         type: 'PUT',
         success: function (result) {
-            alert(result);
+            console.log("Decremented score, new scores: " + result);
+            // JJW - hack - revisit
+            window.location.href = '/players';
         }
     });
 }
@@ -22,8 +24,11 @@ function incrementScore(playerName) {
     $.ajax({
         url: '/players/' + playerName + '/score?value=plus',
         type: 'PUT',
+        dataType: 'json',
         success: function (result) {
-            alert(result);
+            console.log("Incremented score, new scores: " + result);
+            // JJW - hack - revisit
+            window.location.href = '/players';
         }
     });
 }

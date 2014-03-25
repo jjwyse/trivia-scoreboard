@@ -1,4 +1,3 @@
-
 /**
  * Checks that a value is an integer
  * @param n
@@ -18,7 +17,7 @@ function isInt(n) {
  */
 function updatePlayers(db, res, nickname, isSet, value) {
     var players = db.get('players');
-    if(isSet) {
+    if (isSet) {
         players.update(
             { nickname: nickname },
             {
@@ -34,7 +33,7 @@ function updatePlayers(db, res, nickname, isSet, value) {
             }
         );
     }
-    players.find({}, {}, function(err, docs){
+    players.find({}, {}, function (err, docs) {
         console.log("JSON Updated" + JSON.stringify(docs));
         res.json(docs);
     });
@@ -44,24 +43,24 @@ function updatePlayers(db, res, nickname, isSet, value) {
  * PUT on this function updates the players score depending on query parameters
  * Created by Jon Jekeli on 3/17/14.
  */
-exports.update = function(db) {
+exports.update = function (db) {
     return function (req, res) {
         var valueOp = req.query.value;
-        if(valueOp == null) {
-            res.json("Error: Invalid syntax; needs a ?value=x query parameter");
+        if (valueOp == null) {
+            res.json(400, "{errorMessage: Invalid syntax; needs a ?value=x query parameter}");
         }
         else {
-            if(valueOp == "plus") {
+            if (valueOp == "plus") {
                 updatePlayers(db, res, req.params.nickname, false, 1);
             }
-            else if(valueOp == "minus") {
+            else if (valueOp == "minus") {
                 updatePlayers(db, res, req.params.nickname, false, -1);
             }
-            else if(isInt(valueOp)) {
+            else if (isInt(valueOp)) {
                 updatePlayers(db, res, req.params.nickname, true, valueOp);
             }
             else {
-                res.json("Error: Invalid syntax; available values for the value query parameter are: 'plus', 'minus', or any integer");
+                res.json(400, "{errorMessage: Invalid syntax; available values for the value query parameter are: 'plus', 'minus', or any integer}");
             }
         }
     };
@@ -72,17 +71,19 @@ exports.update = function(db) {
  *
  * @param db The Mongo db object
  */
-exports.retrieve = function(db) {
+exports.retrieve = function (db) {
     return function (req, res) {
         var players = db.get('players');
 
-        players.find({}, {}, function(e, players){
+        players.find({}, {}, function (e, players) {
             if (players == null) {
                 res.render('500', {"title": "Oh shit...", "reason": "no players found in the database"});
             }
             else {
                 //sort players by score before rendering
-                players.sort(function(a,b) { return parseInt(b.score) - parseInt(a.score) } );
+                players.sort(function (a, b) {
+                    return parseInt(b.score) - parseInt(a.score)
+                });
 
                 res.render('players', {"title": "111 Players", "players": players});
             }
