@@ -1,0 +1,14 @@
+extends layout
+block content
+    div.jumbotron
+        div.container-fluid
+            div.row
+                each player, u in players
+                    div.col-md-4
+                        img.center-block(margin='0 auto', width='100%', src='/images/#{player.nickname}.png')
+                        h2.text-center #{player.score}
+                        div.btn-group.btn-group-justified
+                            div.btn-group
+                                button.btn-group-justified(type='button', onclick="javascript:decrementScore('#{player.nickname}')")='-'
+                            div.btn-group
+                                button.btn-group-justified(type='button', onclick="javascript:incrementScore('#{player.nickname}')")='+'
