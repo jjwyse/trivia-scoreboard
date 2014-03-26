@@ -51,11 +51,17 @@ h5 {
 
 .thumbnail {
     min-width: 260px;
+    max-width: 260px;
+}
+
+.thumbnails {
+    white-space: nowrap;
 }
 
 .thumbnails li {
     margin-left: 0px !important;
     margin-right: 20px !important;
+    list-style-type: none;
 }
 
 legend {

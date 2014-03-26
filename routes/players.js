@@ -1,3 +1,7 @@
+var monk = require('monk');
+var config = require('../config');
+var db = monk(config.mongodb);
+
 /**
  * Checks that a value is an integer
  * @param n
@@ -67,27 +71,20 @@ exports.update = function (db) {
 };
 
 /**
- * GET request to {base_url}/players
+ * Gets all available players
  *
- * @param db The Mongo db object
  */
-exports.retrieve = function (db) {
-    return function (req, res) {
-        var players = db.get('players');
-
-        players.find({}, {}, function (e, players) {
-            if (players == null) {
-                res.render('500', {"title": "Oh shit...", "reason": "no players found in the database"});
-            }
-            else {
-                //sort players by score before rendering
-                players.sort(function (a, b) {
-                    return parseInt(b.score) - parseInt(a.score)
-                });
-
-                //res.render('players', {"title": "111 Players", "players": players});
-                res.send(players);
-            }
-        });
-    };
+exports.findAll = function(req, res) {
+    var players = db.get('players');
+    players.find({}, {}, function(e, players){
+        if (players == null) {
+//            res.render('500', {"title": "Oh shit...", "reason": "no players found in the database"});
+            console.log("No players found in database...");
+        }
+        else {
+            //sort players by score before rendering
+            players.sort(function(a,b) { return parseInt(b.score) - parseInt(a.score) } );
+            res.send(players);
+        }
+    });
 };

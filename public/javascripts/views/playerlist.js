@@ -7,12 +7,12 @@ window.PlayersListView = Backbone.View.extend({
     render: function () {
         var players = this.model.models;
         var len = players.length;
-        var startPos = (this.options.page - 1) * 8;
-        var endPos = Math.min(startPos + 8, len);
+//        var startPos = (this.options.page - 1) * 8;
+//        var endPos = Math.min(startPos + 8, len);
 
         $(this.el).html('<ul class="thumbnails"></ul>');
 
-        for (var i = startPos; i < endPos; i++) {
+        for (var i = 0; i < 3; i++) {
             $('.thumbnails', this.el).append(new PersonView({model: players[i]}).render().el);
         }
 
@@ -23,7 +23,6 @@ window.PlayersListView = Backbone.View.extend({
 });
 
 window.PersonView = Backbone.View.extend({
-
     tagName: "li",
 
     initialize: function () {

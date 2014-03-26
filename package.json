@@ -9,6 +9,11 @@
     "express": "3.4.8",
     "jade": "*",
     "mongodb": "*",
-    "monk": "*"
+    "monk": "*",
+    "socket.io": "0.9.10"
+  },
+  "engines": {
+    "node": "0.8.4",
+    "npm": "1.1.49"
   }
 }
