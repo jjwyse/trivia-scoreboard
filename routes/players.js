@@ -85,7 +85,8 @@ exports.retrieve = function (db) {
                     return parseInt(b.score) - parseInt(a.score)
                 });
 
-                res.render('players', {"title": "111 Players", "players": players});
+                //res.render('players', {"title": "111 Players", "players": players});
+                res.send(players);
             }
         });
     };
